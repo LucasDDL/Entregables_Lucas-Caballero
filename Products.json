@@ -1,0 +1,92 @@
+[
+	{
+		"title": "guitarra",
+		"description": "Esta es una guitarra",
+		"price": 8500,
+		"thumbnail": "Sin imagen",
+		"code": "gfd353",
+		"stock": 25,
+		"id": 1    
+	},
+	{
+		"title": "bajo",
+		"description": "Este es un bajo",
+		"price": 7000,
+		"thumbnail": "Sin imagen",
+		"code": "adc453",
+		"stock": 25,
+		"id": 2    
+	},
+	{
+		"title": "bateria",
+		"description": "Esta es una bateria",
+		"price": 12500,
+		"thumbnail": "Sin imagen",
+		"code": "gfd353",
+		"stock": 25,
+		"id": 3    
+	},
+	{
+		"title": "piano",
+		"description": "Este es un piano",
+		"price":  15000,
+		"thumbnail": "Sin imagen",
+		"code": "pno123",
+		"stock":  15,
+		"id":  4
+	},
+	{
+		"title": "saxofón",
+		"description": "Este es un saxofón",
+		"price":  2000,
+		"thumbnail": "Sin imagen",
+		"code": "sax456",
+		"stock":  20,
+		"id":  5
+	},
+	{
+		"title": "trompeta",
+		"description": "Esta es una trompeta",
+		"price":  1000,
+		"thumbnail": "Sin imagen",
+		"code": "trp789",
+		"stock":  10,
+		"id":  6
+	},
+	{
+		"title": "flauta",
+		"description": "Esta es una flauta",
+		"price":  500,
+		"thumbnail": "Sin imagen",
+		"code": "flt012",
+		"stock":  5,
+		"id":  7
+	},
+	{
+		"title": "violín",
+		"description": "Este es un violín",
+		"price":  3000,
+		"thumbnail": "Sin imagen",
+		"code": "vln345",
+		"stock":  15,
+		"id":  8
+	},
+	{
+		"title": "percusión",
+		"description": "Esta es una percusión",
+		"price":  2500,
+		"thumbnail": "Sin imagen",
+		"code": "per963",
+		"stock":  20,
+		"id":  9
+	},
+	{
+		"title": "acordeón",
+		"description": "Este es un acordeón",
+		"price":  1200,
+		"thumbnail": "Sin imagen",
+		"code": "acc876",
+		"stock":  10,
+		"id":  10
+	}
+]

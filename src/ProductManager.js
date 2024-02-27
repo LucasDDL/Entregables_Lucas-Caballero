@@ -1,0 +1,127 @@
+import fs from 'fs';
+
+class ProductManager {
+    static id = 1; // Variable estática para el próximo ID
+
+    constructor(path) {
+        this.products = [];
+        this.path = path
+        // this.readFile()
+    }
+
+    async addProduct(product) {
+        await this.readFile()
+        // Define los campos requeridos
+        const requiredFields = ['title', 'description', 'price', 'thumbnail', 'code', 'stock'];
+
+        // Verifica si todos los campos requeridos están presentes
+        for (const field of requiredFields) {
+            if (!product.hasOwnProperty(field) || !product[field]) {
+                throw new Error(`Falta el campo requerido: ${field}`);
+            }
+        }
+
+        // Verifica si ya existe un producto con el mismo código
+        for (const existingProduct of this.products) {
+            if (existingProduct.code === product.code) {
+                throw new Error('Código de producto duplicado');
+            }
+        }
+
+        // Asigna un ID único al producto
+        product.id = ProductManager.id++;
+
+        // Si todas las comprobaciones son exitosas, añade el producto
+        this.products.push(product);
+
+        await this.writeFile()
+    }
+
+    async getProducts() {
+        await this.readFile()
+        return this.products
+    }
+
+    async getProductById(id) {
+        await this.readFile()
+        const product = this.products.find(prod => prod.id === id)
+        if (!product) {
+            throw new Error('Not Found');
+        }
+        return product
+    }
+
+    async updateProduct(id, newData) {
+        await this.readFile()
+        const productIndex = this.products.findIndex(prod => prod.id === id);
+        if (productIndex === -1) {
+            throw new Error('Product not found')
+        }
+        Object.assign(this.products[productIndex], newData);
+        await this.writeFile();
+    }
+
+    async deleteProduct(id) {
+        await this.readFile();
+        const productIndex = this.products.findIndex(prod => prod.id === id);
+        if (productIndex === -1) {
+            throw new Error('Product not found');
+        }
+
+        this.products.splice(productIndex, 1);
+        await this.writeFile();
+    }
+
+    async writeFile() {
+        try {
+            await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, '\t'));
+        } catch (error) {
+            throw error
+        }
+    }
+
+    async readFile() {
+        try {
+            this.products = JSON.parse(await fs.promises.readFile(this.path, 'utf8'));
+        } catch (error) {
+            throw error
+        }
+    }
+}
+
+export default ProductManager
+
+// const manager = new ProductManager('../Products.json');
+
+// (async () => {
+//     try {
+//         await manager.addProduct({
+//             "title": "guitarra",
+//             "description": "Este es una guitarra",
+//             "price": 2500,
+//             "thumbnail": "Sin imagen",
+//             "code": "gfd353",
+//             "stock": 25    
+//         })
+//         await manager.addProduct({
+//             title: 'bateria',
+//             description: 'sdfsd',
+//             price: 50360,
+//             thumbnail: 'no hay imagen',
+//             code: 'ghqa96786',
+//             stock: 4
+//         })
+
+    
+//     // console.log(await manager.getProductById(2));
+//     } catch (error) {
+//         console.error('Error:', error);
+//     }
+// })();
+
+// // console.log(await manager.deleteProduct(1))
+
+// // console.log(manager.getProducts());
+
+
+
