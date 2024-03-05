@@ -1,12 +1,27 @@
-export default function idValidator(paramName, errorMessage) {
+export default function idValidator(paramName) {
     return function(req, res, next) {
         const id = +req.params[paramName];
-        if (isNaN(id)) {
-            const error = new Error(errorMessage);
-            error.status = 404
-            next(error)
-        } else {
-            next()
-        } 
+        switch (paramName) {
+            case 'pid':
+                if (isNaN(id)) {
+                    const error = new Error('Id de producto invalido');
+                    error.status = 404;
+                    next(error);
+                } else {
+                    next();
+                }
+                break;
+            case 'cid':
+                if (isNaN(id)) {
+                    const error = new Error('Id de carrito invalido');
+                    error.status = 404;
+                    next(error);
+                } else {
+                    next();
+                }
+                break;
+            default:
+                next();
+        }
     }
-} 
+}

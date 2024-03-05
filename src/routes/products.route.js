@@ -18,7 +18,7 @@ router.post('/', async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
     try {
-        const limit = Number(req.query.limit)
+        const limit = +req.query.limit
         const products = await manager.getProducts()
         if (!isNaN(limit)) {
            res.status(200).send(products.slice(0, limit))
@@ -32,7 +32,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:pid', idValidator('pid', 'Id de producto invalido'), async(req, res, next) => {
     try {
-        const productId = Number(req.params.pid)
+        const productId = +req.params.pid
         const productById = await manager.getProductById(productId)
         res.status(200).send(productById)
     } catch (error) {

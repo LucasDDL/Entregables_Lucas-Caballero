@@ -3,90 +3,105 @@
 		"title": "guitarra",
 		"description": "Esta es una guitarra",
 		"price": 8500,
-		"thumbnail": "Sin imagen",
+		"thumbnails": [
+			"ruta de imagen"
+		],
 		"code": "gfd353",
 		"stock": 25,
-		"id": 1    
+		"id": 1,
+		"status": "true",
+		"category": "Instrumento de cuerda"
 	},
 	{
 		"title": "bajo",
 		"description": "Este es un bajo",
 		"price": 7000,
-		"thumbnail": "Sin imagen",
+		"thumbnails": [
+			"ruta de imagen"
+		],
 		"code": "adc453",
 		"stock": 25,
-		"id": 2    
+		"id": 2,
+		"status": "true",
+		"category": "Instrumento de cuerda"
+
 	},
 	{
 		"title": "bateria",
 		"description": "Esta es una bateria",
 		"price": 12500,
-		"thumbnail": "Sin imagen",
+		"thumbnails": [
+			""
+		],
 		"code": "gfd353",
 		"stock": 25,
-		"id": 3    
+		"id": 3,
+		"status": "true",
+		"category": "Instrumento de percusión"
 	},
 	{
 		"title": "piano",
 		"description": "Este es un piano",
-		"price":  15000,
-		"thumbnail": "Sin imagen",
+		"price": 15000,
+		"thumbnails": [
+			""
+		],
 		"code": "pno123",
-		"stock":  15,
-		"id":  4
+		"stock": 15,
+		"id": 4,
+		"status": "true",
+		"category": "Instrumento de cuerda"
 	},
 	{
 		"title": "saxofón",
 		"description": "Este es un saxofón",
-		"price":  2000,
-		"thumbnail": "Sin imagen",
+		"price": 2000,
+		"thumbnails": [
+			""
+		],
 		"code": "sax456",
-		"stock":  20,
-		"id":  5
+		"stock": 20,
+		"id": 5,
+		"status": "true",
+		"category": "Instrumento de viento"
 	},
 	{
 		"title": "trompeta",
 		"description": "Esta es una trompeta",
-		"price":  1000,
-		"thumbnail": "Sin imagen",
+		"price": 1000,
+		"thumbnails": [
+			""
+		],
 		"code": "trp789",
-		"stock":  10,
-		"id":  6
+		"stock": 10,
+		"id": 6,
+		"status": "true",
+		"category": "Instrumento de viento"
 	},
 	{
 		"title": "flauta",
 		"description": "Esta es una flauta",
-		"price":  500,
-		"thumbnail": "Sin imagen",
+		"price": 500,
+		"thumbnails": [
+			""
+		],
 		"code": "flt012",
-		"stock":  5,
-		"id":  7
+		"stock": 5,
+		"id": 7,
+		"status": "true",
+		"category": "Instrumento de viento"
 	},
 	{
 		"title": "violín",
 		"description": "Este es un violín",
-		"price":  3000,
-		"thumbnail": "Sin imagen",
+		"price": 3000,
+		"thumbnails": [
+			""
+		],
 		"code": "vln345",
-		"stock":  15,
-		"id":  8
-	},
-	{
-		"title": "percusión",
-		"description": "Esta es una percusión",
-		"price":  2500,
-		"thumbnail": "Sin imagen",
-		"code": "per963",
-		"stock":  20,
-		"id":  9
-	},
-	{
-		"title": "acordeón",
-		"description": "Este es un acordeón",
-		"price":  1200,
-		"thumbnail": "Sin imagen",
-		"code": "acc876",
-		"stock":  10,
-		"id":  10
+		"stock": 15,
+		"id": 8,
+		"status": "true",
+		"category": "Instrumento de cuerda"
 	}
 ]

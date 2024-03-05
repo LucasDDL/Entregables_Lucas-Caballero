@@ -1,5 +1,6 @@
 import  express from "express";
-import producstRouter from "./routes/products.route.js"
+import productsRouter from "./routes/products.route.js"
+import cartsRouter from './routes/carts.route.js'
 import errorHandler from "./middlewares/errorHandler.js";
 
 const app = express();
@@ -7,7 +8,8 @@ const app = express();
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.use('/api/products', producstRouter)
+app.use('/api/products', productsRouter)
+app.use('/api/carts', cartsRouter)
 
 app.use(errorHandler)
 
