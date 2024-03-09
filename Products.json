@@ -24,7 +24,6 @@
 		"id": 2,
 		"status": "true",
 		"category": "Instrumento de cuerda"
-
 	},
 	{
 		"title": "bateria",
@@ -103,5 +102,44 @@
 		"id": 8,
 		"status": "true",
 		"category": "Instrumento de cuerda"
+	},
+	{
+		"title": "ukelele",
+		"description": "descripcion del ukelele",
+		"price": 500,
+		"thumbnail": [
+			""
+		],
+		"code": "ukl888",
+		"stock": 3,
+		"category": "Instrumento de cuerda",
+		"id": 10,
+		"status": true
+	},
+	{
+		"title": "órgano",
+		"description": "descripcion del organo",
+		"price": 4500,
+		"thumbnail": [
+			""
+		],
+		"code": "ogn888",
+		"stock": 3,
+		"category": "Instrumento de eléctrico",
+		"id": 11,
+		"status": true
+	},
+	{
+		"title": "trombón",
+		"description": "descripcion del trombón",
+		"price": 4500,
+		"thumbnail": [
+			""
+		],
+		"code": "trb488",
+		"stock": 6,
+		"category": "Instrumento de viento",
+		"id": 12,
+		"status": true
 	}
 ]

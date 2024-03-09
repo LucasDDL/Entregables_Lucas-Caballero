@@ -1,6 +1,7 @@
 import { Router } from "express";
 import ProductManager from "../ProductManager.js";
 import idValidator from "../middlewares/idValidator.js";
+import { wsServer } from "../app.js";
 
 const router = Router();
 
@@ -10,6 +11,8 @@ router.post('/', async (req, res, next) => {
     try {
         const newProduct = await manager.addProduct(req.body)
         res.status(200).send(newProduct);
+        const updatedProducts = await manager.getProducts()
+        wsServer.emit('products-updated', {message: 'Un nuevo producto ha sido agregado', products: updatedProducts})
     } catch (error) {
         next(error)
     }
@@ -46,6 +49,8 @@ router.put('/:pid', idValidator('pid', 'Id de producto invalido'), async(req, re
        const productId = +req.params.pid
        const updatedProduct = await manager.updateProduct(productId, data)
        res.status(200).send(updatedProduct)
+       const updatedProducts = await manager.getProducts()
+       wsServer.emit('products-updated', {message: 'Un producto ha sido actualizado', products: updatedProducts})
     } catch (error) {
         next(error)
     }
@@ -56,6 +61,8 @@ router.delete('/:pid', idValidator('pid', 'Id de producto invalido'), async(req,
         const productId = +req.params.pid
         const deletedProduct = await manager.deleteProduct(productId)
         res.status(200).send(deletedProduct)
+        const updatedProducts = await manager.getProducts()
+        wsServer.emit('products-updated', {message: 'Un producto ha sido eliminado', products: updatedProducts})
     } catch (error) {
         next(error)
     }
