@@ -1,8 +1,9 @@
 import fs from 'fs';
+import Product from '../models/productModel.js';
 
 class ProductManager {
-    static id = 1; // Variable estática para el próximo ID
-
+    static id = 1;
+    
     constructor(path) {
         this.products = [];
         this.path = path
@@ -28,12 +29,13 @@ class ProductManager {
             }
         }
 
-        // Asigna un ID único al producto
-        let newId = ProductManager.id;
-        while (this.products.some(p => p.id === newId)) {
-            newId++;
-        }
-        product.id = newId
+         // Asigna un ID único al producto
+         let newId = ProductManager.id;
+         while (this.products.some(p => p.id === newId)) {
+             newId++;
+         }
+         product.id = newId
+        
         // agrega el campo status si no esta definido en true por defecto
         product.status = product.status || true;
         // Si todas las comprobaciones son exitosas, añade el producto
@@ -42,7 +44,6 @@ class ProductManager {
         await this.writeFile()
         return product
     }
-
     async getProducts() {
         await this.readFile()
         return this.products

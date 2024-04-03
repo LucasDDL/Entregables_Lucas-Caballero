@@ -1,18 +1,5 @@
 [
 	{
-		"title": "guitarra",
-		"description": "Esta es una guitarra",
-		"price": 8500,
-		"thumbnails": [
-			"ruta de imagen"
-		],
-		"code": "gfd353",
-		"stock": 25,
-		"id": 1,
-		"status": "true",
-		"category": "Instrumento de cuerda"
-	},
-	{
 		"title": "bajo",
 		"description": "Este es un bajo",
 		"price": 7000,
@@ -21,22 +8,22 @@
 		],
 		"code": "adc453",
 		"stock": 25,
-		"id": 2,
 		"status": "true",
-		"category": "Instrumento de cuerda"
+		"category": "Instrumento de cuerda",
+		"id": 1
 	},
 	{
-		"title": "bateria",
-		"description": "Esta es una bateria",
-		"price": 12500,
+		"title": "guitarra",
+		"description": "Esta es una guitarra",
+		"price": 8500,
 		"thumbnails": [
-			""
+			"ruta de imagen"
 		],
 		"code": "gfd353",
 		"stock": 25,
-		"id": 3,
 		"status": "true",
-		"category": "Instrumento de percusión"
+		"category": "Instrumento de cuerda",
+		"id": 2
 	},
 	{
 		"title": "piano",
@@ -47,35 +34,22 @@
 		],
 		"code": "pno123",
 		"stock": 15,
-		"id": 4,
 		"status": "true",
-		"category": "Instrumento de cuerda"
+		"category": "Instrumento de cuerda",
+		"id": 3
 	},
 	{
-		"title": "saxofón",
-		"description": "Este es un saxofón",
-		"price": 2000,
+		"title": "bateria",
+		"description": "Esta es una bateria",
+		"price": 12500,
 		"thumbnails": [
 			""
 		],
-		"code": "sax456",
-		"stock": 20,
-		"id": 5,
+		"code": "gfd353",
+		"stock": 25,
 		"status": "true",
-		"category": "Instrumento de viento"
-	},
-	{
-		"title": "trompeta",
-		"description": "Esta es una trompeta",
-		"price": 1000,
-		"thumbnails": [
-			""
-		],
-		"code": "trp789",
-		"stock": 10,
-		"id": 6,
-		"status": "true",
-		"category": "Instrumento de viento"
+		"category": "Instrumento de percusión",
+		"id": 4
 	},
 	{
 		"title": "flauta",
@@ -86,9 +60,9 @@
 		],
 		"code": "flt012",
 		"stock": 5,
-		"id": 7,
 		"status": "true",
-		"category": "Instrumento de viento"
+		"category": "Instrumento de viento",
+		"id": 5
 	},
 	{
 		"title": "violín",
@@ -99,22 +73,9 @@
 		],
 		"code": "vln345",
 		"stock": 15,
-		"id": 8,
 		"status": "true",
-		"category": "Instrumento de cuerda"
-	},
-	{
-		"title": "ukelele",
-		"description": "descripcion del ukelele",
-		"price": 500,
-		"thumbnail": [
-			""
-		],
-		"code": "ukl888",
-		"stock": 3,
 		"category": "Instrumento de cuerda",
-		"id": 10,
-		"status": true
+		"id": 6
 	},
 	{
 		"title": "órgano",
@@ -126,8 +87,47 @@
 		"code": "ogn888",
 		"stock": 3,
 		"category": "Instrumento de eléctrico",
-		"id": 11,
+		"id": 7,
 		"status": true
+	},
+	{
+		"title": "saxofón",
+		"description": "Este es un saxofón",
+		"price": 2000,
+		"thumbnails": [
+			""
+		],
+		"code": "sax456",
+		"stock": 20,
+		"status": "true",
+		"category": "Instrumento de viento",
+		"id": 8
+	},
+	{
+		"title": "trompeta",
+		"description": "Esta es una trompeta",
+		"price": 1000,
+		"thumbnails": [
+			""
+		],
+		"code": "trp789",
+		"stock": 10,
+		"status": "true",
+		"category": "Instrumento de viento",
+		"id": 9
+	},
+	{
+		"title": "ukelele",
+		"description": "descripcion del ukelele",
+		"price": 500,
+		"thumbnail": [
+			""
+		],
+		"code": "ukl888",
+		"stock": 3,
+		"category": "Instrumento de cuerda",
+		"status": true,
+		"id": 10
 	},
 	{
 		"title": "trombón",
@@ -139,7 +139,30 @@
 		"code": "trb488",
 		"stock": 6,
 		"category": "Instrumento de viento",
-		"id": 12,
+		"status": true,
+		"id": 11
+	},
+	{
+		"title": "bateria eléctrica",
+		"description": "descripcion de la bateria eléctrica",
+		"price": 1000,
+		"code": "batel564",
+		"stock": 3,
+		"category": "Instrumento eléctrico",
+		"status": true,
+		"id": 12
+	},
+	{
+		"title": "contrabajo",
+		"description": "descripcion del contrabajo",
+		"price": 2500,
+		"thumbnail": [
+			""
+		],
+		"code": "conbaj238",
+		"stock": 3,
+		"category": "Instrumento de cuerda",
+		"id": 13,
 		"status": true
 	}
 ]
