@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, query } from "express";
 import ProductManager from "../dao/fileManager/ProductManager.js";
 import { wsServer } from "../app.js";
 import Product from "../dao/models/productModel.js";
@@ -13,7 +13,7 @@ router.post('/', async (req, res, next) => {
         const productToSave = new Product(newProduct)
         await productToSave.save();
         
-        res.status(200).send(newProduct);
+        res.status(200).json(newProduct);
         
         const updatedProducts = await Product.find({})
         wsServer.emit('products-updated', {message: 'Un nuevo producto ha sido agregado', products: updatedProducts})
@@ -22,16 +22,55 @@ router.post('/', async (req, res, next) => {
     }
 })
 
+
 router.get('/', async (req, res, next) => {
     try {
-        const limit = req.query.limit
-        const productsFromDb = await Product.find({});
-       
-        if (!isNaN(limit)) {
-           res.status(200).send(productsFromDb.slice(0, limit))
-        } else {
-            res.status(200).send(productsFromDb);
+        let sort = req.query.sort;
+        if (req.query.sort === '1' || req.query.sort === '-1') {
+            sort = +req.query.sort
         }
+        const options = {
+            page: +req.query.page || 1,
+            limit: +req.query.limit || 10,
+        }
+        if (sort !== undefined) {
+            options.sort = {price: sort}
+        }
+        const query = req.query.query ? JSON.parse(req.query.query) : {}
+        
+        const products = await Product.paginate(query, options)
+        
+        let status;
+        let hasPrevPageValue = "no";
+        let hasNextPageValue = "no";
+        let prevLink = null;
+        let nextLink = null;
+        products? status="succes" : status="error"
+        if(products.hasPrevPage) {
+            hasPrevPageValue = "yes"
+            const prevPage = products.page - 1
+            prevLink = `http://localhost:8080/api/products?page=${prevPage}`
+        } 
+        if (products.hasNextPage) {
+            hasNextPageValue = "yes"
+            const nextPage = products.page + 1
+            nextLink = `http://localhost:8080/api/products?page=${nextPage}`
+        }
+        products.hasNextPage? hasNextPageValue="yes" : hasNextPageValue="no"
+        products.hasPrevPage? hasPrevPageValue="yes" : hasPrevPageValue="no"
+
+        res.send({
+            status: status,
+            payload: products.docs,
+            totalPages: products.totalPages,
+            prevPage: products.prevPage,
+            nextPage: products.nextPage,
+            page: products.page,
+            hasPrevPage: hasPrevPageValue,
+            hasNextPage: hasNextPageValue,
+            prevLink: prevLink,
+            nextLink: nextLink
+        })
     } catch (error) {
         next(error)
     }
