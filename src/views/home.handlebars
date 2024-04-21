@@ -1,13 +1,9 @@
 <div>
-    <h1>Lista de productos</h1>
-    <ul>
-        {{#each products as |product|}}
-            <li>
-                <p>Titulo: {{product.title}}</p>
-                <p>Descripción: {{product.description}}</p>
-                <p>Precio: {{product.price}}</p>
-                <p>Stock: {{product.stock}}</p>
-            </li>
-        {{/each}}
-    </ul>
+   {{#if isLogged}}
+    <a href="/profile">My profile</a>
+    <a href="/products">Prouducts</a>
+   {{else}}
+    <a href="/register">Register</a>
+    <a href="/login">Login</a>
+   {{/if}}
 </div>

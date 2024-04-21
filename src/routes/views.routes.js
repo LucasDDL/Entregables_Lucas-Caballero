@@ -2,20 +2,55 @@ import { Router } from "express";
 import ProductManager from "../dao/fileManager/ProductManager.js";
 import Product from "../dao/models/productModel.js";
 import Cart from "../dao/models/cartModel.js";
+import User from "../dao/models/userModel.js";
 
 const router = Router()
 
 const manager = new ProductManager('../Products.json')
 
-router.get('/', async(req, res, next) => {
-    try {
-        const products = await manager.getProducts()
+router.get('/', (req, res, next) => {
+        const isLogged = req.session && req.session.user
         res.status(200).render('home', {
-            title: 'Products Home',
-            products
+            title: 'Home',
+            isLogged,
         })
+})
+
+router.get('/register', (req, res) => {
+    res.render('register', {
+        title: 'Register'
+    })
+})
+
+router.get('/login', (req, res) => {
+    res.render('login', {
+        title: 'Login'
+    })
+})
+
+router.get('/profile', async(req, res) => {
+    try {
+        if (req.session && req.session.user && req.session.user.id) {
+            const user = await User.findById(req.session.user.id)
+            if (user) {
+                res.render('profile', {
+                    title: 'Profile',
+                    user: {
+                        first_name: user.first_name,
+                        last_name: user.last_name,
+                        age: user.age,
+                        email: user.email
+                    }
+                }) 
+            } else {
+                res.status(404).send('Usiario no encontrado')
+            }
+        } else {
+            res.status(400).send('No has iniciado sesión')
+        }
     } catch (error) {
-        next(error)
+        console.error(error);
+        res.status(500).send('Error cargando perfil')
     }
 })
 
@@ -37,6 +72,7 @@ router.get('/realtimeproducts', async(req, res, next) => {
 
 router.get('/products', async(req, res) => {
     try {
+        const user = await User.findById(req.session.user.id)
         let sort = req.query.sort;
         if (req.query.sort === '1' || req.query.sort === '-1') {
             sort = +req.query.sort
@@ -53,7 +89,11 @@ router.get('/products', async(req, res) => {
         const productsPagination = await Product.paginate(query, options)
         const products = productsPagination.docs.map(prod => prod.toObject());
         res.render('products', {
-            products
+            products,
+            user: {
+                first_name: user.first_name,
+                last_name: user.last_name
+            }
         })       
     } catch (error) {
         console.error(error);

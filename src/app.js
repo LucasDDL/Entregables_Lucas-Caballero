@@ -1,10 +1,14 @@
 import express from "express";
 import { Server } from "socket.io";
 import mongoose from "mongoose";
+import session from "express-session";
+import MongoStore from "connect-mongo";
 
 import productsRouter from "./routes/products.route.js"
 import cartsRouter from './routes/carts.route.js'
 import viewsRouter from './routes/views.routes.js'
+import sessionRouter from './routes/session.route.js'
+
 
 import errorHandler from "./middlewares/errorHandler.js";
 import { engine } from "express-handlebars";
@@ -28,12 +32,22 @@ connectToMongoDB().then(() => {
 
     app.use(express.urlencoded({ extended: true }))
     app.use(express.json())
+    app.use(session({
+        secret: 'secreto',
+        resave: true,
+        saveUninitialized: true,
+        store: MongoStore.create({
+            mongoUrl: 'mongodb+srv://LucasCaballero:bokitamongo@codertest.3ewwa04.mongodb.net/ecommerce',
+            collectionName: 'sessions'
+        })
+    }))
 
     app.use(express.static('../public'))
 
+    app.use('/', viewsRouter)
     app.use('/api/products', productsRouter)
     app.use('/api/carts', cartsRouter)
-    app.use('/api/views', viewsRouter)
+    app.use('/api/sessions', sessionRouter)
 
 
     app.use(errorHandler)
