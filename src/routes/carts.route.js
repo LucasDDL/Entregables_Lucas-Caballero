@@ -148,7 +148,7 @@ router.put('/:cid/products/:pid', async(req, res, next) => {
 })   
 router.delete('/:cid', async(req, res, next) => {
     try {
-        const cartId = +req.params
+        const cartId = +req.params.cid
         const cart = await Cart.findOne({id: cartId})
         if (!cart) {
             throw new Error('Carrito no encontrado');
