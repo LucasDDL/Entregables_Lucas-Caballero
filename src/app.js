@@ -12,6 +12,8 @@ import sessionRouter from './routes/session.route.js'
 
 import errorHandler from "./middlewares/errorHandler.js";
 import { engine } from "express-handlebars";
+import initializePassport from "./config/passport.config.js";
+import passport from "passport";
 
 const app = express();
 let wsServer;
@@ -41,6 +43,9 @@ connectToMongoDB().then(() => {
             collectionName: 'sessions'
         })
     }))
+    initializePassport()
+    app.use(passport.initialize())
+    app.use(passport.session())
 
     app.use(express.static('../public'))
 
@@ -48,7 +53,6 @@ connectToMongoDB().then(() => {
     app.use('/api/products', productsRouter)
     app.use('/api/carts', cartsRouter)
     app.use('/api/sessions', sessionRouter)
-
 
     app.use(errorHandler)
 
@@ -62,6 +66,7 @@ connectToMongoDB().then(() => {
 
     
 }).catch(error => {
+    console.log(new Error(error).stack);
     console.error('Error al conectar al servidor express');
     process.exit(1)
 })

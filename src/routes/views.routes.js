@@ -54,6 +54,12 @@ router.get('/profile', async(req, res) => {
     }
 })
 
+router.get('/restore-password', (req, res) => {
+    res.render('restore-password', {
+        title: 'Restore Pasword',
+    })
+})
+
 router.get('/realtimeproducts', async(req, res, next) => {
     try {
         const products = await manager.getProducts()
@@ -72,7 +78,10 @@ router.get('/realtimeproducts', async(req, res, next) => {
 
 router.get('/products', async(req, res) => {
     try {
-        const user = await User.findById(req.session.user.id)
+        if (!req.user) {
+           return res.redirect('/login') 
+        }
+
         let sort = req.query.sort;
         if (req.query.sort === '1' || req.query.sort === '-1') {
             sort = +req.query.sort
@@ -91,8 +100,8 @@ router.get('/products', async(req, res) => {
         res.render('products', {
             products,
             user: {
-                first_name: user.first_name,
-                last_name: user.last_name
+                first_name: req.user.first_name,
+                last_name: req.user.last_name
             }
         })       
     } catch (error) {
