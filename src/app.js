@@ -9,17 +9,17 @@ import cartsRouter from './routes/carts.route.js'
 import viewsRouter from './routes/views.routes.js'
 import sessionRouter from './routes/session.route.js'
 
-
 import errorHandler from "./middlewares/errorHandler.js";
 import { engine } from "express-handlebars";
 import initializePassport from "./config/passport.config.js";
 import passport from "passport";
+import config from "./config/config.js";
 
 const app = express();
 let wsServer;
 async function connectToMongoDB() {
     try {
-        await mongoose.connect('mongodb+srv://LucasCaballero:bokitamongo@codertest.3ewwa04.mongodb.net/ecommerce')
+        await mongoose.connect(config.mongoURL)
         console.log('Conección a MongoDB establecida');
     } catch (error) {
         console.error('Error al conectar con MongoDB');
@@ -35,11 +35,11 @@ connectToMongoDB().then(() => {
     app.use(express.urlencoded({ extended: true }))
     app.use(express.json())
     app.use(session({
-        secret: 'secreto',
+        secret: config.sessionSecret,
         resave: true,
         saveUninitialized: true,
         store: MongoStore.create({
-            mongoUrl: 'mongodb+srv://LucasCaballero:bokitamongo@codertest.3ewwa04.mongodb.net/ecommerce',
+            mongoUrl: config.mongoURL,
             collectionName: 'sessions'
         })
     }))
@@ -56,7 +56,7 @@ connectToMongoDB().then(() => {
 
     app.use(errorHandler)
 
-    const httpServer = app.listen(8080, () => console.log('servidor escuchando en el puerto 8080'))
+    const httpServer = app.listen(config.port, () => console.log('servidor escuchando en el puerto 8080'))
     wsServer = new Server(httpServer);
 
     wsServer.on('connection', (clientSocket) => {
