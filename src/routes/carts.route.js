@@ -1,5 +1,5 @@
 import { Router } from "express";
-import fs from 'fs'
+
 import idValidator from "../middlewares/idValidator.js";
 import Cart from "../dao/models/cartModel.js";
 import Product from "../dao/models/productModel.js";

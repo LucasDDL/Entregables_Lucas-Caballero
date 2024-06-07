@@ -1,6 +1,6 @@
-import Cart from "../dao/models/cartModel";
-import Product from "../dao/models/productModel";
-import Ticket from "../dao/models/ticketModel";
+import Cart from "../dao/models/cartModel.js";
+import Product from "../dao/models/productModel.js";
+import Ticket from "../dao/models/ticketModel.js";
 
 export async function finalizePurchase(cartId) {
   const cart = await Cart.findById(cartId).populate('products.product');
